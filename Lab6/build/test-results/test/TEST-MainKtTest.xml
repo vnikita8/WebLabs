@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MainKtTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-02T06:56:27" hostname="KOMPUTER" time="1.248">
+  <properties/>
+  <testcase name="getPerson()" classname="MainKtTest" time="1.248"/>
+  <system-out><![CDATA[sun.net.www.protocol.https.DelegateHttpsURLConnection:https://api.agify.io?name=spiderman
+200
+OK
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
