@@ -21,20 +21,34 @@ class Controller {
         return toDo.print(toDo.listToDo())
     }
 
-    @RequestMapping("/addTaskTo/{todoItem}/{name}", method = [RequestMethod.GET])
+    @RequestMapping("/addTaskTo {todoItem}/{name}", method = [RequestMethod.POST])
     fun newTaskTo(@PathVariable("todoItem") toDoItem: String, @PathVariable("name") name: String): String?{
         toDo.find(toDoItem)?.subTasks?.add(ToDoItem(name))
         return "Подзадачи для $toDoItem:\n" + showAllFrom(toDoItem)
     }
 
-    @RequestMapping("/addTask/{name}", method = [RequestMethod.GET])
+    @RequestMapping("/addTask {name}", method = [RequestMethod.POST])
     fun newTask(@PathVariable("name") name: String):String?{
         toDo.add(ToDoItem(name))
         return showAll()
     }
 
-    @RequestMapping("/showAllFrom/{taskName}", method = [RequestMethod.GET])
+    @RequestMapping("/showAllFrom {taskName}", method = [RequestMethod.GET])
     fun showAllFrom(@PathVariable("taskName") name: String): String?{
         return toDo.find(name)?.subTasks?.print()
     }
+
+    @RequestMapping("/delete {taskName}", method = [RequestMethod.DELETE])
+    fun delete(@PathVariable("taskName") name: String): String?{
+        toDo.delete(name)
+        return showAll()
+    }
+
+    @RequestMapping("/deleteFrom {taskName}/{name}", method = [RequestMethod.DELETE])
+    fun deleteFrom(@PathVariable("taskName") taskName: String, @PathVariable("name") name: String): String?{
+        toDo.find(taskName)?.subTasks?.delete(name)
+        return showAllFrom(taskName)
+    }
+
+
 }
